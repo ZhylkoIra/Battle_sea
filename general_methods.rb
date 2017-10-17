@@ -28,11 +28,11 @@ end
 
 def create_ships
 
-	names = ["Battleship", "Corvette", "Corvette", "Brig", "Brig", "Brig", "Frigate",
+	armada = ["Battleship", "Corvette", "Corvette", "Brig", "Brig", "Brig", "Frigate",
 		"Frigate", "Frigate", "Frigate"]
 	arr_ships = []
-	
-	names.each_with_index do |var, index|
+
+	armada.each_with_index do |var, index|
 		case var
 			when "Battleship"
 				life = 4
@@ -49,7 +49,7 @@ def create_ships
 end
 
 def create_map
-	
+
 	arr_map = Array.new(12).map!{Array.new(12)}
 
 	12.times do |y|
