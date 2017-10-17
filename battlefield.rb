@@ -15,14 +15,14 @@
 # Method @show@, actually, shows map.
 
 class Battlefield
-
+  attr_reader :ships, :map
 	def initialize(arr_ships, arr_map)
 		@ships = arr_ships
 		@map = arr_map
 	end
 
 	def create
-		@ships.each_with_index do |obj, index|	
+		ships.each_with_index do |obj, index|	
 			loop do 															# While optimal random x & y coordinates are not found - loop
 				x_pos = (1 + Random.rand(10))
 				y_pos = (1 + Random.rand(10))
@@ -45,7 +45,7 @@ class Battlefield
 		1.upto(10) do |y|
 			print "#{(y + 64).chr} ".bg_red
 			1.upto(10) do |x|
-				print "#{@map[y][x]} ".bg_black.gray
+				print "#{map[y][x]} ".bg_black.gray
 			end
 		print "\n"
 		end
@@ -59,7 +59,7 @@ class Battlefield
 			if (obj.position == "along")										# Check rules for horizontal positioned ships
 				count = x = x_p - 1
 				while x < (x_p + obj.life + 1)	
-					if (@map[y_p][x] != "." || @map[y_p + 1][x] != "." || @map[y_p - 1][x] != ".")
+					if (map[y_p][x] != "." || map[y_p + 1][x] != "." || map[y_p - 1][x] != ".")
 						flag = false
 						break
 					end
@@ -70,7 +70,7 @@ class Battlefield
 			if (obj.position == "across")										# Check rules for vertical positioned ships
 				count = y = y_p - 1
 				while y < (y_p + obj.life + 1)
-					if (@map[y][x_p] != "." || @map[y][x_p + 1] != "." || @map[y][x_p - 1] != ".")
+					if (map[y][x_p] != "." || map[y][x_p + 1] != "." || map[y][x_p - 1] != ".")
 						flag = false
 						break
 					end
@@ -84,11 +84,11 @@ class Battlefield
 	def set_ship (x_pos, y_pos, obj)
 		if obj.position == "along"
 			obj.life.times do |x|
-				@map[y_pos][x_pos + x] = obj.life
+				map[y_pos][x_pos + x] = obj.life
 			end
 		elsif obj.position == "across"
 			obj.life.times do |y|
-				@map[y_pos + y][x_pos] = obj.life
+				map[y_pos + y][x_pos] = obj.life
 			end
 		end
 	end
