@@ -13,7 +13,7 @@
 require "./general_methods.rb"
 require "./battlefield.rb"
 
-answer = ''
+answer = ""
 while answer != "n"
 	arr_ships = create_ships							# create an array, filled with ships
 	arr_map = create_map								# create an empty array with dots
